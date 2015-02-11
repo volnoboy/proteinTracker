@@ -17,9 +17,9 @@ public class Program {
 
 		session.beginTransaction();
 		User loadedUser = (User) session.load(User.class, 1);
-        System.out.println("User name is: " + loadedUser.getName() + ", and total is " + loadedUser.getTotal());
-		loadedUser.setTotal(loadedUser.getTotal() + 7);
-		System.out.println("User name is: " + loadedUser.getName() + ", and total is " + loadedUser.getTotal());
+        System.out.println("User name is: " + loadedUser.getName() + ", and total is " + loadedUser.getProteinData().getTotal());
+		loadedUser.getProteinData().setTotal(loadedUser.getProteinData().getTotal() + 7);
+		System.out.println("User name is: " + loadedUser.getName() + ", and total is " + loadedUser.getProteinData().getTotal());
 		session.getTransaction().commit();
 
 		session.close();
@@ -30,8 +30,8 @@ public class Program {
 	public static User generateUser() {
 		User user = new User();
 		user.setName("Valera");
-		user.setGoal(115);
-		user.setTotal(5643);
+		user.getProteinData().setGoal(115);
+		user.getProteinData().setTotal(5643);
 		return user;
 	}
 }

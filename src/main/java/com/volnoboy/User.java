@@ -6,8 +6,16 @@ package com.volnoboy;
 public class User {
 	private int id;
 	private String name;
-	private int total;
-	private int goal;
+
+	public ProteinData getProteinData() {
+		return proteinData;
+	}
+
+	public void setProteinData(ProteinData proteinData) {
+		this.proteinData = proteinData;
+	}
+
+	private ProteinData proteinData = new ProteinData();
 
 	public int getId() {
 		return id;
@@ -25,19 +33,5 @@ public class User {
 		this.name = name;
 	}
 
-	public int getTotal() {
-		return total;
-	}
 
-	public void setTotal(int total) {
-		this.total = total;
-	}
-
-	public int getGoal() {
-		return goal;
-	}
-
-	public void setGoal(int goal) {
-		this.goal = goal;
-	}
 }
