@@ -1,7 +1,7 @@
 package com.volnoboy;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Reuven on 2/8/15.
@@ -12,7 +12,7 @@ public class User {
 
 	private ProteinData proteinData = new ProteinData();
 
-	private Set<UserHistory> history = new HashSet<UserHistory>();
+	private List<UserHistory> history = new ArrayList<UserHistory>();
 
 	public int getId() {
 		return id;
@@ -38,11 +38,11 @@ public class User {
 		this.proteinData = proteinData;
 	}
 
-	public Set<UserHistory> getHistory() {
+	public List<UserHistory> getHistory() {
 		return history;
 	}
 
-	public void setHistory(Set<UserHistory> history) {
+	public void setHistory(List<UserHistory> history) {
 		this.history = history;
 	}
 
