@@ -42,6 +42,7 @@ public class Program {
 		user.getProteinData().setGoal(115);
 		user.getProteinData().setTotal(5643);
 		user.addHistory(new UserHistory(new Date(), "Set the goal to 250"));
+		user.setGoalAlert(new GoalAlert("Congratulations!"));
 		return user;
 	}
 }
