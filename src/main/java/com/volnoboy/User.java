@@ -2,7 +2,9 @@ package com.volnoboy;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Reuven on 2/8/15.
@@ -20,15 +22,7 @@ public class User {
 
 	private List<UserHistory> history = new ArrayList<UserHistory>();
 
-	private GoalAlert goalAlert;
-
-	public GoalAlert getGoalAlert() {
-		return goalAlert;
-	}
-
-	public void setGoalAlert(GoalAlert goalAlert) {
-		this.goalAlert = goalAlert;
-	}
+	private Set<GoalAlert> goalAlerts = new HashSet<GoalAlert>();
 
 	public int getId() {
 		return id;
@@ -68,5 +62,12 @@ public class User {
 		history.add(historyItem);
 	}
 
+	public Set<GoalAlert> getGoalAlerts() {
+		return goalAlerts;
+	}
+
+	public void setGoalAlerts(Set<GoalAlert> goalAlerts) {
+		this.goalAlerts = goalAlerts;
+	}
 
 }
