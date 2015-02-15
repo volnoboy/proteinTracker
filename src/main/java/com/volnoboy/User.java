@@ -8,10 +8,15 @@ import java.util.List;
  * Created by Reuven on 2/8/15.
  */
 public class User {
+
+	public User() {
+		setProteinData(new ProteinData());
+	}
+
 	private int id;
 	private String name;
 
-	private ProteinData proteinData = new ProteinData();
+	private ProteinData proteinData;
 
 	private List<UserHistory> history = new ArrayList<UserHistory>();
 
@@ -37,6 +42,7 @@ public class User {
 
 	public void setProteinData(ProteinData proteinData) {
 		this.proteinData = proteinData;
+		proteinData.setUser(this);
 	}
 
 	public List<UserHistory> getHistory() {

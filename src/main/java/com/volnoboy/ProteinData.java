@@ -6,8 +6,26 @@ package com.volnoboy;
  */
 public class ProteinData {
 
+	private int Id;
+	private User user;
 	private int total;
 	private int goal;
+
+	public int getId() {
+		return Id;
+	}
+
+	public void setId(int id) {
+		Id = id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public int getTotal() {
 		return total;

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.volnoboy.ProteinData" table="PROTEINDATA">
+        <id name="id" type="int">
+            <column name="ID"/>
+            <generator class="foreign">
+                <param name="property">user</param>
+            </generator>
+        </id>
+
+        <one-to-one name="user" class="com.volnoboy.User" constrained="true"/>
+
+        <property name="total" type="int">
+            <column name="TOTAL"/>
+        </property>
+        <property name="goal" type="int">
+            <column name="GOAL"/>
+        </property>
+    </class>
+</hibernate-mapping>
