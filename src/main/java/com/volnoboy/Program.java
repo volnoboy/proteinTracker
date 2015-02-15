@@ -25,7 +25,7 @@ public class Program {
 		}
 
 		loadedUser.getProteinData().setTotal(loadedUser.getProteinData().getTotal() + 7);
-		loadedUser.getHistory().add(new UserHistory(new Date(), "Added 50 protein"));
+		loadedUser.addHistory(new UserHistory(new Date(), "Added 50 protein"));
 		System.out.println("User name is: " + loadedUser.getName() + ", and total is " + loadedUser.getProteinData().getTotal());
 		session.getTransaction().commit();
 
@@ -37,10 +37,10 @@ public class Program {
 	public static User generateUser() {
 		User user = new User();
 		user.setName("Valera");
-		user.getHistory().add( new UserHistory(new Date(), "Set name to Valera"));
+		user.addHistory( new UserHistory(new Date(), "Set name to Valera"));
 		user.getProteinData().setGoal(115);
 		user.getProteinData().setTotal(5643);
-		user.getHistory().add(new UserHistory(new Date(), "Set the goal to 250"));
+		user.addHistory(new UserHistory(new Date(), "Set the goal to 250"));
 		return user;
 	}
 }
