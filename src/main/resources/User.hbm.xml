@@ -13,7 +13,7 @@
             <column name="NAME"/>
         </property>
 
-        <one-to-one name="proteinData" class="com.volnoboy.ProteinData" cascade="save-update"/>
+        <many-to-one name="proteinData" class="com.volnoboy.ProteinData" column="PROTEIN_DATA_ID" cascade="save-update" unique="true"/>
 
         <list name="history" table="USER_HISTORY" inverse="true" cascade="save-update">
             <key column="USER_ID"/>

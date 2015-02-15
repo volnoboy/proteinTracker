@@ -27,6 +27,7 @@ public class Program {
 		loadedUser.getProteinData().setTotal(loadedUser.getProteinData().getTotal() + 7);
 		loadedUser.addHistory(new UserHistory(new Date(), "Added 50 protein"));
 		System.out.println("User name is: " + loadedUser.getName() + ", and total is " + loadedUser.getProteinData().getTotal());
+		generateUser().setProteinData(new ProteinData());
 		session.getTransaction().commit();
 
 		session.close();
