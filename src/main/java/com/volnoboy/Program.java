@@ -1,7 +1,9 @@
 package com.volnoboy;
 
 import java.util.Date;
+import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -12,38 +14,51 @@ public class Program {
 	public static void main(String[] args) {
 		System.out.println("Program started");
 
+		PopulateSampleData();
+
 		Session session  = HibernateUtilities.getSessionFactory().openSession();
 		session.beginTransaction();
-		session.save(generateUser());
-		session.getTransaction().commit();
 
-		session.beginTransaction();
-		User loadedUser = (User) session.load(User.class, 1);
-        System.out.println("User name is: " + loadedUser.getName() + ", and total is " + loadedUser.getProteinData().getTotal());
-		for (UserHistory history : loadedUser.getHistory()) {
-			System.out.println(history.getEntryTime().toString() + " " + history.getEntry());
+		Query query = session.createQuery("from User");
+		List<User> users = query.list();
+		for (User user : users) {
+			System.out.println(user.getName());
 		}
 
-		loadedUser.getProteinData().setTotal(loadedUser.getProteinData().getTotal() + 7);
-		loadedUser.addHistory(new UserHistory(new Date(), "Added 50 protein"));
-		System.out.println("User name is: " + loadedUser.getName() + ", and total is " + loadedUser.getProteinData().getTotal());
-		generateUser().setProteinData(new ProteinData());
 		session.getTransaction().commit();
-
 		session.close();
 		HibernateUtilities.getSessionFactory().close();
+
 		System.out.println("Program executed");
 	}
 
-	public static User generateUser() {
+	private static void PopulateSampleData() {
+		Session session = HibernateUtilities.getSessionFactory().openSession();
+		session.beginTransaction();
+
+		User joe = CreateUser("Joe", 500, 50, "Good job", "You made it!");
+		session.save(joe);
+
+		User bob = CreateUser("Bob", 300, 20, "Taco time!");
+		session.save(bob);
+
+		User amy = CreateUser("Amy", 250, 200, "Yes!!!");
+		session.save(amy);
+		session.getTransaction().commit();
+		session.close();
+	}
+
+	private static User CreateUser(String name, int goal, int total, String ... alerts){
 		User user = new User();
-		user.setName("Valera");
-		user.addHistory( new UserHistory(new Date(), "Set name to Valera"));
-		user.getProteinData().setGoal(115);
-		user.getProteinData().setTotal(5643);
-		user.addHistory(new UserHistory(new Date(), "Set the goal to 250"));
-		user.getGoalAlerts().add(new GoalAlert("Congratulations!"));
-		user.getGoalAlerts().add(new GoalAlert("You did it!"));
+		user.setName(name);
+		user.getProteinData().setGoal(goal);
+		user.addHistory(new UserHistory(new Date(), "Set goal to " + goal));
+		user.getProteinData().setTotal(total);
+		user.addHistory(new UserHistory(new Date(), "Set total to " + total));
+		for(String alert : alerts) {
+			user.getGoalAlerts().add(new GoalAlert(alert));
+		}
+
 		return user;
 	}
 }
