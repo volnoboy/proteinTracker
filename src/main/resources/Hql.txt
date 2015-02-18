@@ -23,16 +23,25 @@
 
 		==============================================================================================
 		Implicit join:
-		select user from User as user where user.proteinData.total > 0
+		Query query = session.createQuery("select user from User as user where user.proteinData.total > 0");
+        List<User> users = query.list();
+        for (User user : users) {
+        	System.out.println(user.getName());
+       	}
 
 		==============================================================================================
 		Explicit join:
+		Query query = session.createQuery("select user from User user, GoalAlert ga where user.id =  ga.id");
+		List<User> users = query.list();
+		for (User user : users) {
+			System.out.println(user.getName());
+		}
+		Another example:
 		select user from User user join user.proteinData pd where pd.total > 0
-		select user from User user, GoalAlert ga where user.id =  ga.id
 
 		============================================================================================
 		New:
-		Query query = session.createQuery("select new com.volnoboy.UserTotal(user.name, user.proteinData.total)" + "from User user")
+		Query query = session.createQuery("select new com.volnoboy.UserTotal(user.name, user.proteinData.total)" + "from User user");
 		List<UserTotal> users = query.list();
 		for (UserTotal userTotal : users) {
 			System.out.println(userTotal.getName() + ":" + userTotal.getTotal());

@@ -15,8 +15,8 @@ for (Object[] result : results) {
 	}
 }
 
-Criteria criteria = session.createCriteria(User.class).crateAlias("proteinData", "pd").add(Restrictions.or(Restrictions.eq("name", "Joe"), Restrictions.eq("name", "Bob")))
-.setProjection(Projections.property("pd.total");
+Criteria criteria = session.createCriteria(User.class).createAlias("proteinData", "pd").add(Restrictions.or(Restrictions.eq("name", "Joe"), Restrictions.eq("name", "Bob")))
+.setProjection(Projections.property("pd.total"));
 
 Criteria by example:
 User user = new User();
