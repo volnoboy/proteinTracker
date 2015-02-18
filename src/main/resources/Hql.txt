@@ -1,0 +1,41 @@
+		Pass one parameter:
+		Query query = session.createQuery("select user from User as user where user.name = :name").setString("name", "Joe");
+		List<User> users = query.list();
+		for (User user : users) {
+			System.out.println(user.getName());
+		}
+
+		==========================================================================================
+		Pagination, start from setFirstResult() and show number of results in setMaxResults():
+		Query query = session.createQuery("from GoalAlert").setFirstResult(2).setMaxResults(1);
+		List<GoalAlert> goalAlerts = query.list();
+		for (GoalAlert goalAlert : goalAlerts) {
+			System.out.println(goalAlert.getMessage());
+		}
+
+		============================================================================================
+		Get query from xml config:
+		Query query = session.getNamedQuery("AllGoalAlerts");
+		List<GoalAlert> goalAlerts = query.list();
+		for (GoalAlert goalAlert : goalAlerts) {
+			System.out.println(goalAlert.getMessage());
+		}
+
+		==============================================================================================
+		Implicit join:
+		select user from User as user where user.proteinData.total > 0
+
+		==============================================================================================
+		Explicit join:
+		select user from User user join user.proteinData pd where pd.total > 0
+		select user from User user, GoalAlert ga where user.id =  ga.id
+
+		============================================================================================
+		New:
+		Query query = session.createQuery("select new com.volnoboy.UserTotal(user.name, user.proteinData.total)" + "from User user")
+		List<UserTotal> users = query.list();
+		for (UserTotal userTotal : users) {
+			System.out.println(userTotal.getName() + ":" + userTotal.getTotal());
+		}
+
+		============================================================================================
