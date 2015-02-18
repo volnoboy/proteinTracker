@@ -3,7 +3,7 @@ package com.volnoboy;
 import java.util.Date;
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 
 /**
@@ -19,8 +19,8 @@ public class Program {
 		Session session  = HibernateUtilities.getSessionFactory().openSession();
 		session.beginTransaction();
 
-		Query query = session.createQuery("from User");
-		List<User> users = query.list();
+		Criteria criteria = session.createCriteria(User.class);
+		List<User> users = criteria.list();
 		for (User user : users) {
 			System.out.println(user.getName());
 		}

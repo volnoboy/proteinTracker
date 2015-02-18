@@ -1,0 +1,25 @@
+Criteria criteria = session.createCriteria(User.class).add(Restrictions.eq("name", "Joe"));
+
+Criteria criteria = session.createCriteria(User.class).add(Restrictions.eq("name", "Joe")).add(Restrictions.eq("id", 1));
+
+Criteria criteria = session.createCriteria(User.class).add(Restrictions.or(Restrictions.eq("name", "Joe"), Restrictions.eq("name", "Bob")));
+
+Criteria criteria = session.createCriteria(User.class).add(Restrictions.or(Restrictions.eq("name", "Joe"), Restrictions.eq("name", "Bob"))).setProjection(Projections.property("id"));
+
+Criteria criteria = session.createCriteria(User.class).add(Restrictions.or(Restrictions.eq("name", "Joe"), Restrictions.eq("name", "Bob")))
+		.setProjection(Projections.projectionList().add(Projections.property("name")).add(Projections.property("id")));
+List<Object[]> results = criteria.list();
+for (Object[] result : results) {
+	for (Object o : result) {
+		System.out.println(o.toString());
+	}
+}
+
+Criteria criteria = session.createCriteria(User.class).crateAlias("proteinData", "pd").add(Restrictions.or(Restrictions.eq("name", "Joe"), Restrictions.eq("name", "Bob")))
+.setProjection(Projections.property("pd.total");
+
+Criteria by example:
+User user = new User();
+user.setName("joe");
+Example example = Example.create(user).ignoreCase();
+session.createCriteria(User.class).add(example);
