@@ -26,6 +26,12 @@ public class Program {
 			System.out.println(user.getName());
 		}
 
+		Query sqlQuery = session.createSQLQuery("SELECT * FROM protein_tracker.Users").addEntity(User.class);
+		List<User> sqlUsers = sqlQuery.list();
+		for (User user : sqlUsers) {
+			System.out.println(user.getName());
+		}
+
 		Query query = session.createQuery("update ProteinData pd set pd.goal = 0");
 		query.executeUpdate();
 
