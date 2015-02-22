@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -24,6 +25,9 @@ public class Program {
 		for (User user : users) {
 			System.out.println(user.getName());
 		}
+
+		Query query = session.createQuery("update ProteinData pd set pd.goal = 0");
+		query.executeUpdate();
 
 		session.getTransaction().commit();
 		session.close();
