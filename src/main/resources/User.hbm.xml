@@ -5,6 +5,7 @@
 
 <hibernate-mapping>
     <class name="com.volnoboy.User" table="Users">
+        <cache usage="read-write"/>
         <id name="id" type="int">
             <column name="ID"/>
             <generator class="identity"/>
@@ -16,6 +17,7 @@
         <many-to-one name="proteinData" class="com.volnoboy.ProteinData" column="PROTEIN_DATA_ID" cascade="save-update" unique="true"/>
 
         <list name="history" table="USER_HISTORY" inverse="true" cascade="save-update">
+            <cache usage="read-write"/>
             <key column="USER_ID"/>
             <list-index column="POSITION"/>
             <one-to-many class="com.volnoboy.UserHistory"/>
