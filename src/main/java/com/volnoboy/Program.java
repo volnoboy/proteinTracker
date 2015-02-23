@@ -35,6 +35,9 @@ public class Program {
 		Query query = session.createQuery("update ProteinData pd set pd.goal = 0");
 		query.executeUpdate();
 
+		User u = (User) session.load(User.class, 1);
+		System.out.println(u.getName());
+
 		session.getTransaction().commit();
 		session.close();
 		HibernateUtilities.getSessionFactory().close();
