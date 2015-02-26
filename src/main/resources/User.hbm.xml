@@ -4,6 +4,9 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
+    <filter-def name="nameFilter" condition="name like :name">
+        <filter-param name="name" type="string"/>
+    </filter-def>
     <class name="com.volnoboy.User" table="Users">
         <cache usage="read-write"/>
         <id name="id" type="int">
@@ -26,5 +29,6 @@
            <key column="USER_ID"/>
            <many-to-many class="com.volnoboy.GoalAlert" column="GOALALERT_ID"/>
        </set>
+        <filter name="nameFilter"/>
     </class>
 </hibernate-mapping>

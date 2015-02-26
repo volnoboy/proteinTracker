@@ -18,7 +18,15 @@ public class Program {
 		PopulateSampleData();
 
 		Session session  = HibernateUtilities.getSessionFactory().openSession();
+		session.enableFilter("nameFilter").setParameter("name", "J%");
+
 		session.beginTransaction();
+
+		Query filterQuery = session.createQuery("from User");
+		List<User> filteredUsers = filterQuery.list();
+		for (User user : filteredUsers) {
+			System.out.println(user.getName());
+		}
 
 		Criteria criteria = session.createCriteria(User.class);
 		List<User> users = criteria.list();
